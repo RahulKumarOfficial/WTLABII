@@ -27,6 +27,7 @@ function getState(countryId)
                 {
                         if(req.readyState==4 && req.status==200)
                             document.getElementById('statediv').innerHTML=req.responseText;
+
                 }
                 req.open("GET",strURL,true);
                 req.send(null);
@@ -35,9 +36,9 @@ function getState(countryId)
 
 
 
-function getCity(stateId)
+function getCity(countryId,stateId)
 {
-        var strURL="findCity.php?state="+stateId;
+        var strURL="findCity.php?country="+countryId+"&state="+stateId;
 var req=getXMLHTTP();
 
         if(req)
