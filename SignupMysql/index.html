@@ -1,0 +1,42 @@
+<!--Problem statement : Create a generic sign up page for including parameters like First Name, Last Name,
+Date of Birth, mobile number and email address and insert the values in MySQL
+Database using PHP. -->
+<html>
+<head>
+  <title>Sign Up Page</title>
+</head>
+<link rel="stylesheet" href="./index.css">
+<body>
+  <center><h1 class="Heading">Signup Page</h1></center>
+  <center>
+  <form action="submit.php" method="POST">
+    <table>
+      <tr>
+        <td colspan="100">First Name</td>
+        <td colspan="100"><input type="text" name="fname"></td>
+      </tr>
+      <tr>
+        <td colspan="100">Last Name</td>
+        <td colspan="100"><input type="text" name="lname"></td>
+      </tr>
+      <tr>
+        <td colspan="100">Date Of Birth</td>
+        <td colspan="100"><input type="text" name="dob"></td>
+      </tr>
+      <tr>
+        <td colspan="100">Mobile Number</td>
+        <td colspan="100"><input type="text" name="mob"></td>
+      </tr>
+      <tr>
+        <td colspan="100">Email</td>
+        <td colspan="100"><input type="text" name="email"></td>
+      </tr>
+      <tr>
+        <td colspan="80"></td>
+        <td colspan="100"><button type="submit" value="submit">Submit</button></td>
+      </tr>
+    </table>
+  </form>
+</center>
+</body>
+</html>
