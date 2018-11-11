@@ -1,16 +1,8 @@
 <?php
 
         $con=mysqli_connect('localhost:3306','rahul','','country');
-
-        if(!$con)
-        {
-                die('Could not connect:'.mysql_error());
-        }
-
         $sql="select *from country";
-
         $result=mysqli_query($con,$sql);
-
 ?>
 
 <html>
@@ -21,28 +13,7 @@
 function getXMLHTTP()
 {
         var xmlhttp=false;
-        try{
-                xmlhttp=new XMLHttpRequest();
-        }
-
-        catch(e)
-        {
-                try{
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                }
-catch(e)
-                {
-
-                        try{
-                               xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
-                        }
-
-                        catch(e)
-                        {
-                                xmlhttp=false;
-                       }
-               }
-        }
+        xmlhttp=new XMLHttpRequest();
         return xmlhttp;
 }
 
@@ -50,25 +21,12 @@ function getState(countryId)
 {
         var strURL="findState.php?country="+countryId;
         var req=getXMLHTTP();
-
         if(req)
         {
                 req.onreadystatechange = function()
                 {
-                        if(req.readyState==4)
-                        {
-if(req.status==200)
-                                {
-                                        document.getElementById('statediv').innerHTML=req.responseText;
-                                        document.getElementById('citydiv').innerHTML='<select name="city_name">'+
-                                        '<option>Select City</option>'+
-                                        '</select>';
-                                }
-                                else
-                                {
-                                        alert("Problem loading:\n"+req.statusText);
-                               }
-                        }
+                        if(req.readyState==4 && req.status==200)
+                            document.getElementById('statediv').innerHTML=req.responseText;
                 }
                 req.open("GET",strURL,true);
                 req.send(null);
@@ -77,37 +35,28 @@ if(req.status==200)
 
 
 
-function getCity(countryId,stateId)
+function getCity(stateId)
 {
-        var strURL="findCity.php?country="+countryId+"&state="+stateId;
+        var strURL="findCity.php?state="+stateId;
 var req=getXMLHTTP();
 
         if(req)
         {
                 req.onreadystatechange = function()
                 {
-                        if(req.readyState==4)
-                        {
-                                if(req.status==200)
-                                {
-                                        document.getElementById('citydiv').innerHTML=req.responseText;
-                                }
-                                else
-                                {
-                                        alert("Problem loading:\n"+req.statusText);
-                                }
-                        }
+                        if(req.readyState==4 && req.status==200)
+                                document.getElementById('citydiv').innerHTML=req.responseText;
                 }
                 req.open("GET",strURL,true);
-               req.send(null);
+                req.send(null);
         }
 }
 
 </script>
 </head>
-<body bgcolor="wheat">
+<body bgcolor="aqua">
 <form action="" method="post">
-<marquee><h2><font color="blue">Dynamic Change of Select Options</font></h2></marquee>
+<h2><font color="blue">Dynamic Change of Select Options</font></h2>
 <center>
 <table>
 <tr>
@@ -129,7 +78,6 @@ var req=getXMLHTTP();
         </select>
         </td>
 </tr>
-
 <tr>
         <td width="150px">City</td>
         <td>:</td>
@@ -138,7 +86,6 @@ var req=getXMLHTTP();
         </select>
         </td>
 </tr>
-
 </table>
 </center>
 </form>
